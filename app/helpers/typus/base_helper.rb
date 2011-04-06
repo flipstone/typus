@@ -18,17 +18,17 @@ module Typus
     end
 
     def login_info
-      unless admin_user.is_a?(FakeUser)
+      unless typus_user.is_a?(FakeUser)
         render "typus/helpers/base/login_info"
       end
     end
 
-    def admin_sign_out_path
+    def typus_sign_out_path
       case Typus.authentication
       when :devise
         send("destroy_#{Typus.user_class_name.underscore}_session")
       else
-        destroy_admin_session_path
+        destroy_typus_session_path
       end
     end
 

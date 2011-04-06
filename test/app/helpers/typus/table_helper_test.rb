@@ -23,7 +23,7 @@ class Typus::TableHelperTest < ActiveSupport::TestCase
 
   def render(*args); args; end
   def params; {} end
-  def admin_user; end
+  def typus_user; end
 
   setup do
     default_url_options[:host] = "test.host"
@@ -77,14 +77,14 @@ class Typus::TableHelperTest < ActiveSupport::TestCase
     end
 
     should "work with associated model when user has access" do
-      admin_user.expects(:can?).returns(true)
+      typus_user.expects(:can?).returns(true)
       comment = Factory(:comment)
       post = comment.post
       assert_equal %(<a href="/typus/posts/edit/#{post.id}">#{post.to_label}</a>), table_belongs_to_field("post", comment)
     end
 
     should "work with associated model when user does not have access" do
-      admin_user.expects(:can?).returns(false)
+      typus_user.expects(:can?).returns(false)
       comment = Factory(:comment)
       post = comment.post
       assert_equal post.to_label, table_belongs_to_field("post", comment)

@@ -49,7 +49,7 @@ class Typus::DashboardControllerTest < ActionController::TestCase
     should "redirect to sign in when not signed in" do
       get :show
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
     end
 
   end
@@ -61,7 +61,7 @@ class Typus::DashboardControllerTest < ActionController::TestCase
     get :show
 
     assert_response :redirect
-    assert_redirected_to new_admin_session_path
+    assert_redirected_to new_typus_session_path
     assert_nil @request.session[:typus_user_id]
   end
 
@@ -82,7 +82,7 @@ class Typus::DashboardControllerTest < ActionController::TestCase
       assert_template "show"
     end
 
-    should "render admin layout" do
+    should "render typus layout" do
       assert_template "layouts/typus/base"
     end
 
@@ -125,7 +125,7 @@ class Typus::DashboardControllerTest < ActionController::TestCase
       get :show
 
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
       assert_nil @request.session[:typus_user_id]
     end
 
@@ -136,7 +136,7 @@ class Typus::DashboardControllerTest < ActionController::TestCase
       get :show
 
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
       assert_nil @request.session[:typus_user_id]
     end
 
@@ -150,11 +150,11 @@ class Typus::DashboardControllerTest < ActionController::TestCase
     end
 
     should "not have links to new posts" do
-      assert_no_match /\/admin\/posts\/new/, @response.body
+      assert_no_match /\/typus\/posts\/new/, @response.body
     end
 
     should "not have links to new typus_users" do
-      assert_no_match /\/admin\/typus_users\/new/, @response.body
+      assert_no_match /\/typus\/typus_users\/new/, @response.body
     end
 
   end

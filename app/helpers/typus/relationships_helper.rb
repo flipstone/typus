@@ -99,22 +99,22 @@ module Typus
                           :resource => @resource.model_name,
                           :resource_id => @item.id }
 
-      if set_condition && admin_user.can?("create", @model_to_relate)
+      if set_condition && typus_user.can?("create", @model_to_relate)
         link_to Typus::I18n.t("Add new"), default_options.merge(options)
       end
     end
 
     def set_condition
-      if @resource.typus_user_id? && admin_user.is_not_root?
-        admin_user.owns?(@item)
+      if @resource.typus_user_id? && typus_user.is_not_root?
+        typus_user.owns?(@item)
       else
         true
       end
     end
 
     def set_conditions
-      if @model_to_relate.typus_options_for(:only_user_items) && admin_user.is_not_root?
-        { Typus.user_fk => admin_user }
+      if @model_to_relate.typus_options_for(:only_user_items) && typus_user.is_not_root?
+        { Typus.user_fk => typus_user }
       end
     end
 
@@ -144,7 +144,7 @@ module Typus
       related_fk = association.primary_key_name
 
       # TODO: Use the build_add_new method.
-      if admin_user.can?('create', related)
+      if typus_user.can?('create', related)
         options = { :controller => "/typus/#{related.to_resource}",
                     :action => 'new',
                     :resource => @resource.model_name }

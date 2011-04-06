@@ -33,9 +33,9 @@ class Typus::ListHelperTest < ActiveSupport::TestCase
       sample_action = ["a body", {:action => :some_action}, {}]
       self.stubs(:resources_actions).returns([sample_action] * 3)
 
-      admin_user = mock
-      admin_user.stubs(:can?).returns(true, false, true)
-      self.stubs(:admin_user).returns(admin_user)
+      typus_user = mock
+      typus_user.stubs(:can?).returns(true, false, true)
+      self.stubs(:typus_user).returns(typus_user)
       self.stubs(:params).returns({:action => 'some_other_action'})
 
       results = list_actions.split("/")

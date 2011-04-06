@@ -11,7 +11,7 @@
   <%= page_title %>
 </h2>
 
-<% if admin_user.applications.any? %>
+<% if typus_user.applications.any? %>
   <%= render 'applications' %>
 <% else %>
   <div class="notice">
@@ -19,4 +19,4 @@
   </div>
 <% end %>
 
-<%= resources(admin_user) %>
+<%= resources(typus_user) %>

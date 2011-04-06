@@ -7,7 +7,7 @@ module Typus
       include Base
 
       def authenticate
-        @admin_user = FakeUser.new
+        @typus_user = FakeUser.new
         authenticate_or_request_with_http_basic(Typus.admin_title) do |user_name, password|
           user_name == Typus.username && password == Typus.password
         end

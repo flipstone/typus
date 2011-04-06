@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope "typus", :module => :typus, :as => "admin" do
+  scope "typus", :module => :typus, :as => "typus" do
 
     match "/" => "dashboard#show", :as => "dashboard"
     match "user_guide" => "base#user_guide"

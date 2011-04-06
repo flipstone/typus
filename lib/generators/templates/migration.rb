@@ -1,7 +1,7 @@
 class <%= migration_name %> < ActiveRecord::Migration
 
   def self.up
-    create_table :<%= admin_users_table_name %> do |t|
+    create_table :<%= typus_users_table_name %> do |t|
       t.string :first_name, :default => "", :null => false
       t.string :last_name, :default => "", :null => false
       t.string :role, :null => false
@@ -13,11 +13,11 @@ class <%= migration_name %> < ActiveRecord::Migration
       t.string :preferences
       t.timestamps
     end
-    add_index :<%= admin_users_table_name %>, :email, :unique => true
+    add_index :<%= typus_users_table_name %>, :email, :unique => true
   end
 
   def self.down
-    drop_table :<%= admin_users_table_name %>
+    drop_table :<%= typus_users_table_name %>
   end
 
 end

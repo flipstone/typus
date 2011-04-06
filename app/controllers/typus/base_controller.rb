@@ -9,7 +9,7 @@ class Typus::BaseController < ActionController::Base
   before_filter :authenticate
   before_filter :set_locale
 
-  helper_method :admin_user
+  helper_method :typus_user
 
   def user_guide
   end
@@ -25,7 +25,7 @@ class Typus::BaseController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = admin_user.locale if admin_user.respond_to?(:locale)
+    I18n.locale = typus_user.locale if typus_user.respond_to?(:locale)
   end
 
 end

@@ -2,8 +2,8 @@ module Typus
   module Authentication
     module Base
 
-      def admin_user
-        @admin_user
+      def typus_user
+        @typus_user
       end
 
       def authenticate; end

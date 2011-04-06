@@ -16,7 +16,7 @@ class Typus::BaseControllerTest < ActionController::TestCase
     should "not be able to get the user_guide" do
       get :user_guide
       assert_response :redirect
-      assert_redirected_to new_admin_session_path(:back_to => '/typus/user_guide')
+      assert_redirected_to new_typus_session_path(:back_to => '/typus/user_guide')
     end
 
   end

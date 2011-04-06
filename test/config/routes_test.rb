@@ -6,23 +6,23 @@ class RoutesTest < ActiveSupport::TestCase
     @routes = Rails.application.routes.routes.map(&:name)
   end
 
-  should "verify admin routes" do
-    expected = %w(admin)
+  should "verify typus routes" do
+    expected = %w(typus)
     expected.each { |r| assert @routes.include?(r) }
   end
 
-  should "verify admin dashboard routes" do
-    expected = %w(admin_dashboard)
+  should "verify typus dashboard routes" do
+    expected = %w(typus_dashboard)
     expected.each { |r| assert @routes.include?(r) }
   end
 
-  should "verify admin account named routes" do
-    expected = %w(forgot_password_admin_account_index admin_account_index new_admin_account admin_account)
+  should "verify typus account named routes" do
+    expected = %w(forgot_password_typus_account_index typus_account_index new_typus_account typus_account)
     expected.each { |r| assert @routes.include?(r) }
   end
 
-  should "verify admin session named routes" do
-    expected = %w(new_admin_session admin_session)
+  should "verify typus session named routes" do
+    expected = %w(new_typus_session typus_session)
     expected.each { |r| assert @routes.include?(r) }
   end
 

@@ -13,9 +13,9 @@ class Typus::SessionController < Typus::BaseController
 
     path = if user
              session[:typus_user_id] = user.id
-             params[:back_to] || admin_dashboard_path
+             params[:back_to] || typus_dashboard_path
            else
-             new_admin_session_path(:back_to => params[:back_to])
+             new_typus_session_path(:back_to => params[:back_to])
            end
 
     redirect_to path
@@ -28,7 +28,7 @@ class Typus::SessionController < Typus::BaseController
   private
 
   def create_an_account?
-    redirect_to new_admin_account_path if Typus.user_class.count.zero?
+    redirect_to new_typus_account_path if Typus.user_class.count.zero?
   end
 
   def set_locale

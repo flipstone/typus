@@ -12,10 +12,10 @@ class Typus::SessionControllerTest < ActionController::TestCase
 
   context "Setup" do
 
-    should "redirect_to_new_admin_account_when_no_admin_users" do
+    should "redirect_to_new_typus_account_when_no_typus_users" do
       get :new
       assert_response :redirect
-      assert_redirected_to new_admin_account_path
+      assert_redirected_to new_typus_account_path
     end
 
   end
@@ -57,7 +57,7 @@ class Typus::SessionControllerTest < ActionController::TestCase
     should "not_create_session_for_invalid_users" do
       post :create, { :typus_user => { :email => "john@example.com", :password => "XXXXXXXX" } }
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
     end
 
     should "not_create_session_for_a_disabled_user" do
@@ -67,7 +67,7 @@ class Typus::SessionControllerTest < ActionController::TestCase
 
       assert_nil @request.session[:typus_user_id]
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
     end
 
     should "create_session_for_an_enabled_user" do
@@ -75,7 +75,7 @@ class Typus::SessionControllerTest < ActionController::TestCase
 
       assert_equal @typus_user.id, @request.session[:typus_user_id]
       assert_response :redirect
-      assert_redirected_to admin_dashboard_path
+      assert_redirected_to typus_dashboard_path
     end
 
     should "destroy" do
@@ -83,7 +83,7 @@ class Typus::SessionControllerTest < ActionController::TestCase
 
       assert_nil @request.session[:typus_user_id]
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
       assert flash.empty?
     end
 

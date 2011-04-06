@@ -1,4 +1,4 @@
-<% admin_user.applications.each do |app| %>
+<% typus_user.applications.each do |app| %>
 
   <table>
 
@@ -8,17 +8,17 @@
       </tr>
     </thead>
 
-    <% admin_user.application(app).each do |model| %>
+    <% typus_user.application(app).each do |model| %>
 
       <%
         klass = model.typus_constantize
         klass_human_name = klass.model_name.human.pluralize
-        admin_items_path = { :controller => "/typus/#{klass.to_resource}" }
+        typus_items_path = { :controller => "/typus/#{klass.to_resource}" }
       %>
 
       <tr class="<%= cycle("even", "odd") %>">
         <td>
-          <%= link_to klass_human_name, admin_items_path %>
+          <%= link_to klass_human_name, typus_items_path %>
         </td>
       </tr>
 

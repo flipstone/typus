@@ -7,7 +7,7 @@ module Typus
       include Base
 
       def authenticate
-        @admin_user = FakeUser.new
+        @typus_user = FakeUser.new
       end
 
     end

@@ -10,7 +10,7 @@ module Typus
       source_root File.expand_path("../../templates", __FILE__)
 
       class_option :user_class_name, :default => "AdminUser", :aliases => "-u"
-      class_option :user_fk, :default => "admin_user_id", :aliases => "-fk"
+      class_option :user_fk, :default => "typus_user_id", :aliases => "-fk"
 
       desc <<-DESC
 Description:
@@ -69,12 +69,12 @@ Examples:
       end
 
       def generate_migration
-        migration_template "migration.rb", "db/migrate/create_#{admin_users_table_name}"
+        migration_template "migration.rb", "db/migrate/create_#{typus_users_table_name}"
       end
 
       protected
 
-      def admin_users_table_name
+      def typus_users_table_name
         options[:user_class_name].tableize
       end
 

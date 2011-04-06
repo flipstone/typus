@@ -52,7 +52,7 @@ module Typus
 
     def table_actions(model, item, association_name = nil)
       resource_actions.map do |body, url, options|
-        if admin_user.can?(url[:action], model.name)
+        if typus_user.can?(url[:action], model.name)
           link_to Typus::I18n.t(body),
                   params.dup.cleanup.merge(url).merge(:controller => model.to_resource, :id => item.id),
                   options
@@ -63,7 +63,7 @@ module Typus
     def table_belongs_to_field(attribute, item)
       if att_value = item.send(attribute)
         action = item.send(attribute).class.typus_options_for(:default_action_on_item)
-        if admin_user.can?(action, att_value.class.name)
+        if typus_user.can?(action, att_value.class.name)
           link_to att_value.to_label, :controller => "/typus/#{att_value.class.to_resource}", :action => action, :id => att_value.id
         else
           att_value.to_label

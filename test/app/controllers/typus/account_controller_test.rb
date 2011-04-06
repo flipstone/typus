@@ -13,7 +13,7 @@ class Typus::AccountControllerTest < ActionController::TestCase
 
   context "No users" do
 
-    should "render new when there are not admin users" do
+    should "render new when there are not typus users" do
       get :new
 
       assert_response :success
@@ -27,14 +27,14 @@ class Typus::AccountControllerTest < ActionController::TestCase
       assert_template "layouts/typus/session"
     end
 
-    should "verify forgot_password redirects to new when there are no admin users" do
+    should "verify forgot_password redirects to new when there are no typus users" do
       get :forgot_password
 
       assert_response :redirect
-      assert_redirected_to new_admin_account_path
+      assert_redirected_to new_typus_account_path
     end
 
-    should "verify send_password redirects to new when there are no admin users"
+    should "verify send_password redirects to new when there are no typus users"
 
     should "not sign_up invalid emails" do
       post :create, :typus_user => { :email => "example.com" }
@@ -61,13 +61,13 @@ class Typus::AccountControllerTest < ActionController::TestCase
       @typus_user = Factory(:typus_user)
     end
 
-    should "new redirect new admin session when there are admin users" do
+    should "new redirect new typus session when there are typus users" do
       get :new
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
     end
 
-    should "verify forgot_password is rendered when there are admin users" do
+    should "verify forgot_password is rendered when there are typus users" do
       get :forgot_password
       assert_response :success
       assert_template "forgot_password"
@@ -83,11 +83,11 @@ class Typus::AccountControllerTest < ActionController::TestCase
       post :send_password, { :typus_user => { :email => @typus_user.email } }
 
       assert_response :redirect
-      assert_redirected_to new_admin_session_path
+      assert_redirected_to new_typus_session_path
       assert_equal "Password recovery link sent to your email.", flash[:notice]
     end
 
-    should "test_should_create_admin_user_session_and_redirect_user_to_its_details" do
+    should "test_should_create_typus_user_session_and_redirect_user_to_its_details" do
       get :show, :id => @typus_user.token
 
       assert_equal @typus_user.id, @request.session[:typus_user_id]

@@ -10,8 +10,8 @@ class Typus::FormHelperTest < ActiveSupport::TestCase
     params = { :controller => '/typus/post', :id => 1, :action => :create }
     self.stubs(:params).returns(params)
 
-    admin_user = mock
-    admin_user.stubs(:can?).with('create', Post).returns(false)
+    typus_user = mock
+    typus_user.stubs(:can?).with('create', Post).returns(false)
     @resource = Comment
 
     expected = <<-HTML
@@ -34,8 +34,8 @@ class Typus::FormHelperTest < ActiveSupport::TestCase
     params = { :controller => '/typus/post', :id => 1, :action => :edit }
     self.stubs(:params).returns(params)
 
-    admin_user = mock
-    admin_user.stubs(:can?).with('create', Comment).returns(true)
+    typus_user = mock
+    typus_user.stubs(:can?).with('create', Comment).returns(true)
     @resource = Post
 
     expected = <<-HTML

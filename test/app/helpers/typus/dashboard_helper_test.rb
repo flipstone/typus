@@ -16,14 +16,14 @@ class Typus::DashboardHelperTest < ActiveSupport::TestCase
     end
 
     should "work for typus_user" do
-      admin_user = Factory(:typus_user)
-      output = resources(admin_user)
+      typus_user = Factory(:typus_user)
+      output = resources(typus_user)
       assert_equal @expected, output
     end
 
     should "work for fake_user" do
-      admin_user = FakeUser.new
-      output = resources(admin_user)
+      typus_user = FakeUser.new
+      output = resources(typus_user)
       assert_equal @expected, output
     end
 
