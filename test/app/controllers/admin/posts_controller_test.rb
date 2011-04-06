@@ -62,7 +62,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
       assert_difference('Post.count') do
         post :create, :post => @post.attributes
         assert_response :redirect
-        assert_redirected_to "/admin/posts/edit/#{Post.last.id}"
+        assert_redirected_to "/typus/posts/edit/#{Post.last.id}"
       end
     end
 
@@ -81,7 +81,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     should "update" do
       post :update, :id => @post.id, :post => { :title => 'Updated' }
       assert_response :redirect
-      assert_redirected_to "/admin/posts/edit/#{@post.id}"
+      assert_redirected_to "/typus/posts/edit/#{@post.id}"
     end
 
   end
@@ -89,7 +89,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
   context "CRUD extras" do
 
     setup do
-      @request.env['HTTP_REFERER'] = "/admin/posts"
+      @request.env['HTTP_REFERER'] = "/typus/posts"
     end
 
     context "toggle" do
@@ -422,7 +422,7 @@ title;status
   context "Roles" do
 
     setup do
-      @request.env['HTTP_REFERER'] = '/admin/posts'
+      @request.env['HTTP_REFERER'] = '/typus/posts'
     end
 
     context "Admin" do
@@ -678,7 +678,7 @@ title;status
                           :resource => "View" }
         end
         assert_response :redirect
-        assert_redirected_to "/admin/views/new?post_id=#{Post.last.id}"
+        assert_redirected_to "/typus/views/new?post_id=#{Post.last.id}"
       end
 
     end
@@ -705,7 +705,7 @@ title;status
           post :create, { :post => @post, :resource => "View", :resource_id => @view.id }
         end
         assert_response :redirect
-        assert_redirected_to "/admin/views/edit/#{@view.id}"
+        assert_redirected_to "/typus/views/edit/#{@view.id}"
 
         # Make sure the association is created!
         assert @view.reload.post

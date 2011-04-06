@@ -91,12 +91,12 @@ class Admin::DashboardControllerTest < ActionController::TestCase
     end
 
     should "verify link to session sign out" do
-      link = %(href="/admin/session")
+      link = %(href="/typus/session")
       assert_match link, @response.body
     end
 
     should "verify link to edit user" do
-      link = %(href="/admin/typus_users/edit/#{@request.session[:typus_user_id]})
+      link = %(href="/typus/typus_users/edit/#{@request.session[:typus_user_id]})
       assert_match link, @response.body
     end
 

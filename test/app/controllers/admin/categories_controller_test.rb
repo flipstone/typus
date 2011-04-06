@@ -14,7 +14,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
 
   setup do
     @request.session[:typus_user_id] = Factory(:typus_user).id
-    @request.env['HTTP_REFERER'] = '/admin/categories'
+    @request.env['HTTP_REFERER'] = '/typus/categories'
   end
 
   context "Categories Views" do
@@ -124,7 +124,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
                           :resource => "Case", :resource_id => @case.id }
         end
         assert_response :redirect
-        assert_redirected_to "/admin/cases/edit/#{@case.id}"
+        assert_redirected_to "/typus/cases/edit/#{@case.id}"
       end
 
     end

@@ -20,7 +20,7 @@ class Admin::AssetsControllerTest < ActionController::TestCase
 
     setup do
       @asset = Factory(:asset)
-      @request.env['HTTP_REFERER'] = "/admin/assets/edit/#{@asset.id}"
+      @request.env['HTTP_REFERER'] = "/typus/assets/edit/#{@asset.id}"
     end
 
     should "verify there is a file link" do
@@ -36,7 +36,7 @@ class Admin::AssetsControllerTest < ActionController::TestCase
 
       get :update, :id => @asset.id, :attribute => "dragonfly"
       assert_response :redirect
-      assert_redirected_to "/admin/assets/edit/#{@asset.id}"
+      assert_redirected_to "/typus/assets/edit/#{@asset.id}"
       assert_equal "Asset successfully updated.", flash[:notice]
 
       @asset.reload

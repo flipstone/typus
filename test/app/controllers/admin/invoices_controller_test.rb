@@ -41,7 +41,7 @@ class Admin::InvoicesControllerTest < ActionController::TestCase
         post :create, { :invoice => @invoice, :resource => "Order", :order_id => @order.id }
       end
       assert_response :redirect
-      assert_redirected_to "/admin/orders/edit/#{@order.id}"
+      assert_redirected_to "/typus/orders/edit/#{@order.id}"
     end
 
     should_eventually "raise an error if we try to add an invoice to an order which already has an invoice" do

@@ -59,7 +59,7 @@ class Admin::TypusUsersControllerTest < ActionController::TestCase
     should "be able to update other users role" do
       post :update, :id => @typus_user_editor.id, :typus_user => { :role => 'admin' }
       assert_response :redirect
-      assert_redirected_to "/admin/typus_users/edit/#{@typus_user_editor.id}"
+      assert_redirected_to "/typus/typus_users/edit/#{@typus_user_editor.id}"
       assert_equal "Typus user successfully updated.", flash[:notice]
     end
 
@@ -68,7 +68,7 @@ class Admin::TypusUsersControllerTest < ActionController::TestCase
   context "Editor" do
 
     setup do
-      @request.env['HTTP_REFERER'] = '/admin/typus_users'
+      @request.env['HTTP_REFERER'] = '/typus/typus_users'
       @editor = Factory(:typus_user, :email => "editor@example.com", :role => "editor")
       @request.session[:typus_user_id] = @editor.id
     end
@@ -86,7 +86,7 @@ class Admin::TypusUsersControllerTest < ActionController::TestCase
     should "be able to update his profile" do
       post :update, :id => @editor.id, :typus_user => { :role => 'editor' }
       assert_response :redirect
-      assert_redirected_to "/admin/typus_users/edit/#{@editor.id}"
+      assert_redirected_to "/typus/typus_users/edit/#{@editor.id}"
       assert_equal "Typus user successfully updated.", flash[:notice]
     end
 
@@ -146,7 +146,7 @@ class Admin::TypusUsersControllerTest < ActionController::TestCase
     should "be able to update his profile" do
       post :update, :id => @designer.id, :typus_user => { :role => 'designer', :email => 'designer@withafancydomain.com' }
       assert_response :redirect
-      assert_redirected_to "/admin/typus_users/edit/#{@designer.id}"
+      assert_redirected_to "/typus/typus_users/edit/#{@designer.id}"
       assert_equal "Typus user successfully updated.", flash[:notice]
       assert_equal "designer@withafancydomain.com", assigns(:item).email
     end

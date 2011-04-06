@@ -33,7 +33,7 @@ class Admin::ImageHoldersControllerTest < ActionController::TestCase
       end
 
       assert_response :redirect
-      assert_redirected_to "http://test.host/admin/birds/edit/#{@bird.id}"
+      assert_redirected_to "http://test.host/typus/birds/edit/#{@bird.id}"
       assert_equal "Bird successfully updated.", flash[:notice]
     end
 

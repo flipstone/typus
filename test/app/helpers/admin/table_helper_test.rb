@@ -36,9 +36,9 @@ class Admin::TableHelperTest < ActiveSupport::TestCase
       params = { :controller => "/admin/typus_users", :action => "index" }
       fields = TypusUser.typus_fields_for(:list)
 
-      expected = [ %(<a href="/admin/typus_users?order_by=email">Email</a>),
-                   %(<a href="/admin/typus_users?order_by=role">Role</a>),
-                   %(<a href="/admin/typus_users?order_by=status">Status</a>) ]
+      expected = [ %(<a href="/typus/typus_users?order_by=email">Email</a>),
+                   %(<a href="/typus/typus_users?order_by=role">Role</a>),
+                   %(<a href="/typus/typus_users?order_by=status">Status</a>) ]
 
       assert_equal expected, table_header(TypusUser, fields, params)
     end
@@ -47,9 +47,9 @@ class Admin::TableHelperTest < ActiveSupport::TestCase
       params = { :controller => "/admin/typus_users", :action => "index", :search => "admin" }
       fields = TypusUser.typus_fields_for(:list)
 
-      expected = [ %(<a href="/admin/typus_users?order_by=email&amp;search=admin">Email</a>),
-                   %(<a href="/admin/typus_users?order_by=role&amp;search=admin">Role</a>),
-                   %(<a href="/admin/typus_users?order_by=status&amp;search=admin">Status</a>) ]
+      expected = [ %(<a href="/typus/typus_users?order_by=email&amp;search=admin">Email</a>),
+                   %(<a href="/typus/typus_users?order_by=role&amp;search=admin">Role</a>),
+                   %(<a href="/typus/typus_users?order_by=status&amp;search=admin">Status</a>) ]
 
       assert_equal expected, table_header(TypusUser, fields, params)
     end
@@ -80,7 +80,7 @@ class Admin::TableHelperTest < ActiveSupport::TestCase
       admin_user.expects(:can?).returns(true)
       comment = Factory(:comment)
       post = comment.post
-      assert_equal %(<a href="/admin/posts/edit/#{post.id}">#{post.to_label}</a>), table_belongs_to_field("post", comment)
+      assert_equal %(<a href="/typus/posts/edit/#{post.id}">#{post.to_label}</a>), table_belongs_to_field("post", comment)
     end
 
     should "work with associated model when user does not have access" do
@@ -153,20 +153,20 @@ class Admin::TableHelperTest < ActiveSupport::TestCase
 
     should "work when default status is true" do
       post = Factory(:typus_user)
-      expected = %(<a href="/admin/typus_users/toggle/#{post.id}?field=status" data-confirm="Change status?">Active</a>)
+      expected = %(<a href="/typus/typus_users/toggle/#{post.id}?field=status" data-confirm="Change status?">Active</a>)
       assert_equal expected, table_boolean_field("status", post)
     end
 
     should "work when default status is false" do
       post = Factory(:typus_user, :status => false)
-      expected = %(<a href="/admin/typus_users/toggle/#{post.id}?field=status" data-confirm="Change status?">Inactive</a>)
+      expected = %(<a href="/typus/typus_users/toggle/#{post.id}?field=status" data-confirm="Change status?">Inactive</a>)
       assert_equal expected, table_boolean_field("status", post)
     end
 
     should "work when default status is nil" do
       post = Factory(:typus_user, :status => nil)
       assert post.status.nil?
-      expected = %(<a href="/admin/typus_users/toggle/#{post.id}?field=status" data-confirm="Change status?">Inactive</a>)
+      expected = %(<a href="/typus/typus_users/toggle/#{post.id}?field=status" data-confirm="Change status?">Inactive</a>)
       assert_equal expected, table_boolean_field("status", post)
     end
 
@@ -195,19 +195,19 @@ class Admin::TableHelperTest < ActiveSupport::TestCase
 
     output = table_position_field(nil, first_category)
     expected = <<-HTML
-1<br/><br/><a href="/admin/categories/position/#{first_category.id}?go=move_lower">Down</a> / <a href="/admin/categories/position/#{first_category.id}?go=move_to_bottom">Bottom</a>
+1<br/><br/><a href="/typus/categories/position/#{first_category.id}?go=move_lower">Down</a> / <a href="/typus/categories/position/#{first_category.id}?go=move_to_bottom">Bottom</a>
     HTML
     assert_equal expected.strip, output
 
     output = table_position_field(nil, second_category)
     expected = <<-HTML
-2<br/><br/><a href="/admin/categories/position/#{second_category.id}?go=move_to_top">Top</a> / <a href="/admin/categories/position/#{second_category.id}?go=move_higher">Up</a> / <a href="/admin/categories/position/#{second_category.id}?go=move_lower">Down</a> / <a href="/admin/categories/position/#{second_category.id}?go=move_to_bottom">Bottom</a>
+2<br/><br/><a href="/typus/categories/position/#{second_category.id}?go=move_to_top">Top</a> / <a href="/typus/categories/position/#{second_category.id}?go=move_higher">Up</a> / <a href="/typus/categories/position/#{second_category.id}?go=move_lower">Down</a> / <a href="/typus/categories/position/#{second_category.id}?go=move_to_bottom">Bottom</a>
     HTML
     assert_equal expected.strip, output
 
     output = table_position_field(nil, last_category)
     expected = <<-HTML
-3<br/><br/><a href="/admin/categories/position/#{last_category.id}?go=move_to_top">Top</a> / <a href="/admin/categories/position/#{last_category.id}?go=move_higher">Up</a>
+3<br/><br/><a href="/typus/categories/position/#{last_category.id}?go=move_to_top">Top</a> / <a href="/typus/categories/position/#{last_category.id}?go=move_higher">Up</a>
     HTML
     assert_equal expected.strip, output
   end
