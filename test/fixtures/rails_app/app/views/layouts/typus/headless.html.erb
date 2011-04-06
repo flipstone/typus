@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="<%= I18n.locale %>">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="generator" content="Typus <%= Typus::VERSION %>" />
+
+  <title><%= yield :title %></title>
+
+  <%= stylesheet_link_tag "/typus/stylesheets/screen",
+                          "/typus/stylesheets/application",
+                          "/typus/vendor/fancybox/jquery.fancybox-1.3.4.css" %>
+  <%= yield :stylesheets -%>
+
+  <%= javascript_include_tag "/typus/javascripts/jquery-1.4.4.min.js",
+                             "/typus/javascripts/jquery.searchField.js",
+                             "/typus/javascripts/jquery.rails.js",
+                             "/typus/vendor/fancybox/jquery.fancybox-1.3.4.pack.js",
+                             "/typus/javascripts/jquery.application.js",
+                             "/typus/javascripts/application" %>
+  <%= yield :javascripts -%>
+
+  <%= csrf_meta_tag %>
+
+</head>
+
+<body>
+
+  <div id="content" class="headless">
+    <%= yield :layout %>
+  </div>
+
+</body>
+
+</html>

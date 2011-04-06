@@ -5,7 +5,7 @@ Typus.setup do |config|
   # config.admin_sub_title = ""
 
   # When mailer_sender is set, password recover is enabled. This email
-  # address will be used in Admin::Mailer.
+  # address will be used in Typus::Mailer.
   # config.mailer_sender = "admin@example.com"
 
   # Define paperclip attachment styles.

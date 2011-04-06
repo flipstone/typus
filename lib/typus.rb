@@ -80,7 +80,7 @@ module Typus
   @@password = "columbia"
 
   ##
-  # Configure the e-mail address which will be shown in Admin::Mailer. If not
+  # Configure the e-mail address which will be shown in Typus::Mailer. If not
   # set `forgot_password` feature is disabled.
   #
   mattr_accessor :mailer_sender

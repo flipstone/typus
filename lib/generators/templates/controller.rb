@@ -1,2 +1,2 @@
-class Admin::<%= resource %>Controller < Admin::ResourcesController
+class Typus::<%= resource %>Controller < Typus::ResourcesController
 end

@@ -45,7 +45,7 @@ module Typus
       # somehow add custom actions to the page so I can navigate.
       #
       # Instead of having this code here, maybe it's better to duplicate the
-      # actions on the pages. So for example: Admin::PostsController#index will
+      # actions on the pages. So for example: Typus::PostsController#index will
       # show a link to add new in the sidebar and beside the "<h2>" header.
       #
 

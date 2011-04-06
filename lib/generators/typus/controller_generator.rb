@@ -13,11 +13,11 @@ Description:
       MSG
 
       def generate_controller
-        template "controller.rb", "app/controllers/admin/#{file_name}_controller.rb"
+        template "controller.rb", "app/controllers/typus/#{file_name}_controller.rb"
       end
 
       hook_for :test_framework do |instance, generator|
-        instance.invoke generator, ["admin/#{instance.name}"]
+        instance.invoke generator, ["typus/#{instance.name}"]
       end
 
     end

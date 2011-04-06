@@ -10,9 +10,9 @@ class StringTest < ActiveSupport::TestCase
   context "remove_prefix" do
 
     should "return strings without default prefix" do
-      assert_equal "posts", "admin/posts".remove_prefix
-      assert_equal "typus_users", "admin/typus_users".remove_prefix
-      assert_equal "delayed/jobs", "admin/delayed/jobs".remove_prefix
+      assert_equal "posts", "typus/posts".remove_prefix
+      assert_equal "typus_users", "typus/typus_users".remove_prefix
+      assert_equal "delayed/jobs", "typus/delayed/jobs".remove_prefix
     end
 
     should "return strings without custom prefix" do
@@ -35,16 +35,16 @@ class StringTest < ActiveSupport::TestCase
     end
 
     should "work for models" do
-      assert_equal Post, "admin/posts".extract_class
-      assert_equal TypusUser, "admin/typus_users".extract_class
+      assert_equal Post, "typus/posts".extract_class
+      assert_equal TypusUser, "typus/typus_users".extract_class
     end
 
     should "work for namespaced models" do
-      assert_equal Delayed::Task, "admin/delayed/tasks".extract_class
+      assert_equal Delayed::Task, "typus/delayed/tasks".extract_class
     end
 
     should "work with inflections" do
-      assert_equal SucursalBancaria, "admin/sucursales_bancarias".extract_class
+      assert_equal SucursalBancaria, "typus/sucursales_bancarias".extract_class
     end
 
   end

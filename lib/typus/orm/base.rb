@@ -134,7 +134,7 @@ module Typus
       #           templates:
       #             body: rich_text
       #
-      # Templates are stored on <tt>app/views/admin/templates</tt>.
+      # Templates are stored on <tt>app/views/typus/templates</tt>.
       #++
       def typus_template(attribute)
         options = read_model_config['fields']['options']
@@ -158,8 +158,8 @@ module Typus
       #--
       #     >> Post.to_resource
       #     => "posts"
-      #     >> Admin::User.to_resource
-      #     => "admin/users"
+      #     >> Typus::User.to_resource
+      #     => "typus/users"
       #++
       def to_resource
         name.underscore.pluralize
